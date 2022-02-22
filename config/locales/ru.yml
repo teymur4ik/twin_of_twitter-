@@ -1,0 +1,50 @@
+# файл, отвечающий за перевод текста на русский
+ru:
+  posts:
+    index:
+      title: "Посты"
+      created: "Создано"
+      read_more: "Подробнее"
+    show:
+      delete: "Удалить"
+      edit: "Редактировать"
+      like: "Нравится"
+      create: "Создать комментарий"
+      comments: "Комментарии"
+    edit:
+      title: "Название"
+      body: "Текст"
+      save: "Сохранить"
+    new:
+      new_post: "Новый пост"
+
+  activerecord:
+    errors:
+      models:
+        post:
+          attributes:
+            title:
+              blank: "Введите что-нибудь"
+              too_short: "Введите от трёх символов"
+
+  layouts:
+    application:
+      create_post: "Создать Пост"
+      home: "Главная"
+      log_out: "Выйти"
+      users: "Пользователи"
+      welcome: "Привет"
+      hello: "Добро пожаловать на мой сайт"
+  users:
+    edit:
+      name: "Имя"
+      password: "Пароль"
+      confirm: "Подтверждение пароля"
+      edit: "Редактировать пользователя"
+    new:
+      new_user: "Новый пользователь"
+      me: "Теймур Мамедов ИУ6-33Б"
+      priv: "Все права защищены"
+  sessions:
+    new:
+      log_in: "Войти"

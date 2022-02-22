@@ -1,0 +1,49 @@
+# файл, отвечающий за перевод текста на английский
+en:
+  posts:
+    index:
+      title: "Posts"
+      created: "Created by"
+      read_more: "Read more"
+    show:
+      delete: "Delete"
+      edit: "Edit"
+      like: "Like"
+      create: "Create comment"
+      comments: "Comments"
+    edit:
+      title: "Title"
+      body: "Body"
+      save: "Save"
+    new:
+      new_post: "New Post"
+  activerecord:
+    errors:
+      models:
+        post:
+          attributes:
+            title:
+              blank: "Write something"
+              too_short: "Write 3 symbols or more"
+  layouts:
+    application:
+      create_post: "Create Post"
+      home: "Home"
+      log_out: "Log out"
+      users: "Users"
+      welcome: "Hello"
+      hello: "Welcome to My site"
+  users:
+    edit:
+      name: "Name"
+      password: "Password"
+      confirm: "Password confirmation"
+      edit: "Edit User"
+    new:
+      new_user: "New User"
+      me: "Teymur Mamedov IU6-33B"
+      priv: "All rights reserved"
+  sessions:
+    new:
+      log_in: "Log In"
+

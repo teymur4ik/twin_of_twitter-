@@ -1,0 +1,55 @@
+<%# показать подробности поста %>
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-md-8">
+    <h2><i class="glyphicon glyphicon-user"></i> <%= @user.name %></h2>
+    <h4><%= @post.title %></h4>
+    <p><%= @post.body %></p>
+  </div>
+  <div class="col-md-4 text-right">
+    <% if @post.user_id == session[:user_id] || session[:user_id] == 1 %>
+      <a class="btn btn-default" href="<%= edit_post_path(@post) %>"><i class="glyphicon glyphicon-edit"></i> <%= t ".edit" %></a>
+      <%= button_to post_path(@post), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" do %>
+      <i class="glyphicon glyphicon-remove"></i> <%= t ".delete" %></button>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <% if @post.likes.all? { |like| like.user_id != session[:user_id] } %>
+    <%= form_for [@post, @post.likes.build] do %>
+      <%= button_tag type: 'submit', class: "btn" do %>
+        <i class="glyphicon glyphicon-thumbs-up"> <%= t ".like" %></i>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% @post.likes.each do |item| %>
+      <% if item.user_id == session[:user_id] %>
+        <%= link_to post_like_path(@post, item), method: :delete do %>
+          <button class="btn btn-primary"><i class="glyphicon glyphicon-thumbs-up"> <%= t ".like" %></i></button>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= render 'likes/likes' %>
+
+<div class="row text-center">
+  <h5><%= t ".comments" %></h5>
+</div>
+
+<%= render 'comments/comments' %>
+
+<h4><i class="glyphicon glyphicon-user"></i> <%= @user_session %></h4>
+
+<%= form_for( [@post, @post.comments.build] ) do |f| %>
+  <p>
+    <%= f.text_area(:body, {:class => 'form-control'}) %>
+  </p>
+  <p>
+    <%= f.submit t ".create", class: "btn btn-primary" %>
+  </p>
+<% end %>

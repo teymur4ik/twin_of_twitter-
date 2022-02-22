@@ -1,0 +1,19 @@
+<%# авторизация пользователя %>
+<div>
+  <p id="notice"><%= notice %></p>
+  <h1><%= t '.log_in' %></h1>
+  <%= form_for :login, url: login_path do %>
+    <p>
+    <div>
+      <%= label_tag t "users.edit.name" %>
+      <%= text_field_tag :name, params[:name], :class => 'form-control' %>
+      <%= label_tag t "users.edit.password" %>
+      <%= password_field_tag :password, params[:password], :class => 'form-control' %>
+    </div>
+    <div>
+      <%= submit_tag t ".log_in", :class => 'btn btn-primary' %>
+    </div>
+    </p>
+  <% end %>
+</div>
+

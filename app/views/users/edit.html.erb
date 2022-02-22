@@ -1,0 +1,25 @@
+<%# редактирование пользователя %>
+<p id="notice"><%= notice %></p>
+<h1><%= t ".edit" %></h1>
+<%= form_for :user, url: user_path(@user), method: :patch do |f| %>
+  <% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %></div>
+    <% end %>
+  <% end %>
+  <p>
+    <%= f.label t ".name" %><br>
+    <%= f.text_field(:name, {:class => 'form-control'}) %>
+  </p>
+  <p>
+    <%= f.label t ".password" %><br>
+    <%= f.password_field(:password, {:class => 'form-control'}) %>
+  </p>
+  <p>
+    <%= f.label t ".confirm" %><br>
+    <%= f.password_field(:password_confirmation, {:class => 'form-control'}) %>
+  </p>
+  <p>
+    <%= f.submit t ".edit", :class => 'btn btn-primary' %>
+  </p>
+<% end %>

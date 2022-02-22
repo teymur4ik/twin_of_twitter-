@@ -1,0 +1,17 @@
+<%# посты конкретного пользователя %>
+<p id="notice"><%= notice %></p>
+
+<h2><i class="glyphicon glyphicon-user"></i> <%= @user.name %></h2>
+<table class="table table-hover">
+  <% @user.posts.each do |post| %>
+    <tr>
+      <td>
+        <h4><%= post.title %></h4>
+        <p><%= post.body %></p>
+      </td>
+      <td class="text-right">
+        <a class="btn btn-default" href="<%= post_path(post) %>"><i class="glyphicon glyphicon-resize-full"></i> <%= t "posts.index.read_more" %></a>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,116 @@
+<%# отвечает за то, как выглядит ВЕСЬ сайт, присооединяет стили CSS, javascript %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'%>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed"
+              data-toggle="collapse" data-target="#navbar"
+              aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+    <% if session[:user_id] != nil %>
+        <a class="navbar-brand"><%= t ".welcome"%> <%= User.find_by_id(session[:user_id]).name %></a>
+        <ul class="nav navbar-nav">
+          <li>
+            <%= link_to home_path do %>
+              <i class="glyphicon glyphicon-home"></i> <%= t '.home'%>
+            <% end %>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li>
+            <%= link_to new_post_path do %>
+              <i class="glyphicon glyphicon-pencil"></i> <%= t '.create_post'%>
+            <% end %>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= link_to login_path do %>
+              <i class="glyphicon glyphicon-log-out"></i> <%= t '.log_out'%>
+            <% end %>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= link_to users_path do %>
+              <i class="glyphicon glyphicon-user"></i> <%= t '.users'%>
+            <% end %>
+          </li>
+        </ul>
+    <% else %>
+      <a class="navbar-brand"><%= t ".hello" %></a>
+        <ul class="nav navbar-nav">
+          <li>
+            <%= link_to home_path do %>
+              <i class="glyphicon glyphicon-home"></i> <%= t '.home'%>
+            <% end %>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= link_to login_path do %>
+              <i class="glyphicon glyphicon-log-in"></i> <%= t 'sessions.new.log_in'%>
+            <% end %>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= link_to new_user_path do %>
+              <i class="glyphicon glyphicon-user"></i> <%= t 'users.new.new_user'%>
+            <% end %>
+          </li>
+        </ul>
+    <% end %>
+    <ul class="nav navbar-nav navbar-right">
+      <% if I18n.locale.to_s == 'ru' %>
+        <li><%= link_to '<i class="glyphicon glyphicon-globe"></i> Русский'.html_safe, locale: "en" %></li>
+      <% else %>
+        <li><%= link_to '<i class="glyphicon glyphicon-globe"></i> English'.html_safe, locale: "ru" %></li>
+      <% end %>
+    </ul>
+    </div>
+  </div>
+</nav>
+
+  <div class="container">
+    <%= yield %>
+    <%= javascript_include_tag 'main' %>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+          <h2 class="footer-heading"><a href="#" class="logo"><%= t 'users.new.me'%></a></h2>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-12 text-center">
+          <p class="copyright">
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> <%= t 'users.new.priv'%>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<!-- Footer -->
+</body>
+</html>

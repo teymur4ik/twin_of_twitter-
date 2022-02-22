@@ -1,0 +1,12 @@
+<%# список всех постов %>
+<h1><%= t ".title" %></h1>
+<% @posts.each do |post| %>
+  <% user = User.find_by_id(post.user_id) %>
+  <div class="well">
+    <h2><%= post.title %> <span style="font-size: small"><%= t ".created" %> <i class="glyphicon glyphicon-user"></i><strong> <%= user.name %></strong></span></h2>
+    <p><%= post.body %></p>
+    <%= link_to post_path(post), :class => 'btn btn-default' do %>
+    <%= t ".read_more" %>
+    <% end %>
+  </div>
+<% end %>

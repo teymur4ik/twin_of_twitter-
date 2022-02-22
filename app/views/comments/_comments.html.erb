@@ -1,0 +1,14 @@
+<%# отвечает за то, как выглядит комментарий %>
+<% @post.comments.each do |comment| %>
+  <% user = User.find_by_id(comment.user_id) %>
+  <div class="well">
+    <div class="col-md-10"><p><strong><i class="glyphicon glyphicon-user"></i> <%= user.name %></strong>: <%= comment.body %></p></div>
+    <% if comment.user_id == session[:user_id] || session[:user_id] == 1 %>
+      <div class="col-md-2 text-right">
+        <%= link_to [comment.post, comment], method: :delete, data: {confirm: 'Are you sure?'} do %>
+          <i class="glyphicon glyphicon-remove"></i><%= t "posts.show.delete" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

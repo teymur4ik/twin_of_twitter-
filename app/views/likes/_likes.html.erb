@@ -1,0 +1,17 @@
+<%# так выглядят лайки %>
+<table>
+      <tr>
+        <td><%= @post.likes.count %></td>
+        <% @post.likes.each do |like| %>
+          <% user = User.find_by_id(like.user_id) %>
+          <% if user != nil %>
+            <td>
+              <i class="glyphicon glyphicon-user"></i> <%= user.name %>
+            </td>
+          <% end %>
+        <% end %>
+      </tr>
+ </table>
+
+
+
